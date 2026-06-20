@@ -1,0 +1,21 @@
+{
+  // Flattened from the create-vue 3-file split. The real compilerOptions and
+  // paths live HERE (the root), not in a referenced config — Vite 8's oxc
+  // resolver can't follow project references on Windows during the dependency
+  // scan (vitejs/vite#22371), which surfaces as a misleading
+  // "[TSCONFIG_ERROR] Tsconfig not found for src/main.ts". Keeping the config
+  // flat means the nearest tsconfig to src/main.ts is a real, loadable one.
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.tsbuildinfo",
+
+    // Path alias "@/foo" -> "src/foo". The runtime half is in vite.config.ts
+    // (resolve.alias); this is the editor/vue-tsc half. Both must agree.
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*", "src/**/*.vue", "env.d.ts"],
+  "exclude": ["src/**/__tests__/*"]
+}

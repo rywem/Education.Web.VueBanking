@@ -1,0 +1,15 @@
+{
+  // Config for tooling that runs in Node, not the browser — chiefly
+  // vite.config.ts. It needs Node globals (process, __dirname) and must NOT
+  // pull in DOM types. Separating it is why `process.env` type-checks in the
+  // config file but (correctly) errors if you try it in browser code.
+  "extends": "@vue/tsconfig/tsconfig.node.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+    "composite": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "types": ["node"]
+  },
+  "include": ["vite.config.ts"]
+}

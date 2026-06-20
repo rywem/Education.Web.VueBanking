@@ -1,0 +1,8 @@
+{
+  // VS Code will prompt to install these when the workspace opens.
+  "recommendations": [
+    "Vue.volar",                  // Vue official extension (was "Volar"). TS-aware .vue support.
+    "ms-dotnettools.csdevkit",    // C# Dev Kit (debugging, solution view). Pulls in the C# ext.
+    "dbaeumer.vscode-eslint"      // Optional: if/when you add ESLint to the client.
+  ]
+}

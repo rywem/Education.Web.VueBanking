@@ -1,0 +1,54 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      // Debug the ASP.NET Core API. Breakpoints in C# work normally.
+      // preLaunchTask builds first. The DLL path tracks net10.0 / Debug — if
+      // you retarget the csproj (e.g. net9.0), update the path here too.
+      "name": "Server: .NET API",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-server",
+      "program": "${workspaceFolder}/server/bin/Debug/net10.0/Education.Web.VueBanking.Server.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/server",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      // Suppresses the browser auto-launch on the API's own URL — we open the
+      // Vite URL via the Chrome config instead.
+      "serverReadyAction": {
+        "action": "none"
+      }
+    },
+    {
+      // Launches Chrome against the VITE dev server (not the API). It starts
+      // the dev-client background task first, waits for the "ready" signal from
+      // the task's problemMatcher, then opens the browser with the JS debugger
+      // attached — so you can set breakpoints in .vue / .ts files too.
+      "name": "Client: Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/client/src",
+      "preLaunchTask": "dev-client",
+      // Maps bundled sources back to your files so breakpoints land in the
+      // right place. The "@/..." alias is resolved here to match vite.config.ts.
+      "sourceMapPathOverrides": {
+        "@/*": "${workspaceFolder}/client/src/*",
+        "webpack:///./src/*": "${workspaceFolder}/client/src/*"
+      }
+    }
+  ],
+  "compounds": [
+    {
+      // THE button you'll actually press. Select "Full Stack" in the Run and
+      // Debug dropdown and hit F5 — it brings up the API (with C# debugging)
+      // and the Vite client (with JS/Vue debugging) together.
+      "name": "Full Stack",
+      "configurations": ["Server: .NET API", "Client: Chrome"],
+      "stopAll": true
+    }
+  ]
+}

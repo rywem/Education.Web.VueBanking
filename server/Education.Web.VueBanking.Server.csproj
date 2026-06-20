@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <!-- Adjust to net9.0 / net8.0 if you don't have the .NET 10 SDK installed.
+         Check what you have with: dotnet --list-sdks -->
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!-- RootNamespace is what the rename script rewrites. Keeping it explicit
+         means the namespace doesn't silently track the folder name. -->
+    <RootNamespace>Education.Web.VueBanking.Server</RootNamespace>
+    <AssemblyName>Education.Web.VueBanking.Server</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Built-in OpenAPI document generation (the thing that replaced Swashbuckle
+         as the default in .NET 9+). This is what you'll point NSwag/openapi-ts at
+         later to generate TypeScript types from your C# DTOs. -->
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0" />
+  </ItemGroup>
+
+</Project>

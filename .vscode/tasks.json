@@ -1,0 +1,48 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      // Builds the .NET project. Used as the preLaunchTask for the API debug
+      // config so F5 always runs current code.
+      "label": "build-server",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/server/Education.Web.VueBanking.Server.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      // Starts the Vite dev server as a BACKGROUND task. The tricky part for
+      // anyone new to VS Code tasks: a background task never "completes", so
+      // VS Code needs a problemMatcher telling it when the server is *ready*,
+      // otherwise the debug launch hangs forever waiting. The custom matcher
+      // below watches Vite's stdout and signals "ready" when it prints its
+      // startup banner ("VITE vX ready" / "Local:").
+      "label": "dev-client",
+      "type": "shell",
+      "command": "npm run dev",
+      "options": { "cwd": "${workspaceFolder}/client" },
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "vite",
+        "pattern": {
+          "regexp": "."
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".",
+          "endsPattern": "(ready in|Local:)"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "fullstack"
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  // Use the workspace's pinned TypeScript, not VS Code's bundled one. This is
+  // why "type errors in editor differ from CI" — they were using different TS
+  // versions. Pointing at node_modules guarantees they match.
+  "typescript.tsdk": "client/node_modules/typescript/lib",
+
+  // The Vue extension provides full type-checking in templates ("takeover mode"
+  // is no longer needed as of the v2+ extension). Keep TS server enabled.
+  "[vue]": {
+    "editor.defaultFormatter": "Vue.volar"
+  },
+
+  // Don't index these — they're huge / generated. (node_modules can be tens of
+  // thousands of files; this keeps search and the file watcher sane.)
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/bin/**": true,
+    "**/obj/**": true,
+    "**/dist/**": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true
+  }
+}
